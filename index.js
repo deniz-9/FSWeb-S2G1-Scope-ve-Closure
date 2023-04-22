@@ -18,7 +18,7 @@
 function ilkiniDon(stringArray, callback) {
   return callback(stringArray[0])
 }
-console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin+metin}));
+console.log('örnek görev:', ilkiniDon(['as', 'sa'], function (metin) { return metin + metin }));
 
 // Başlangıç Challenge'ı Sonu
 
@@ -30,21 +30,31 @@ console.log('örnek görev:', ilkiniDon(['as','sa'],function(metin){return metin
   Aşağıdaki skor1 ve skor2 kodlarını inceleyiniz ve aşağıdaki soruları altına not alarak cevaplayın
   
   1. skor1 ve skor2 arasındaki fark nedir?
-  
+
+ --> skor1 bir closure fonksiyondur. Skor1 içinde yer alan skorgüncelle fonksiyonu sadece skorArttırıcı fonksiyonunun içinde çalışır. SkorArttırcı fonksiyonundaki return edilen skor++ daki ++ skorun başına yazılırsa console da 0 dan değil 1 den başlar.
+  skor2 bir global fonksiyondur. skor2 nin dışında yeni bir fonksiyon oluşturursak skor2 deki return değerini güncelliyor.Yani 0-1-2-3 diye değil 3-4-5 diye devam edecek.
   2. Hangisi bir closure kullanmaktadır? Nasıl tarif edebilirsin? (yarınki derste öğreneceksin :) )
-  
+
+  --> skorArttırıcı fonksiyonu closure kullanıyor. Closure scope u içinde bir variable tanımlayarak onun üzerinde işlem yapıyor.
   3. Hangi durumda skor1 tercih edilebilir? Hangi durumda skor2 daha mantıklıdır?
+
+  --> skorArttirici fonksiyonunu birden fazla skor tutmak için kullanacak isek skor1 daha mantıklıdır. Eğer bir tane işlem yapıp tüm değerleri o işlemin içinde tutmaya karar verirsek global scope yani skor2 daha mantıklıdır. 
 */
 
 // skor1 kodları
 function skorArtirici() {
   let skor = 0;
   return function skorGuncelle() {
-   return skor++;
+    return skor++;
   }
 }
 
 const skor1 = skorArtirici();
+
+console.log("Skor1():", skor1());
+console.log("Skor1():", skor1());
+console.log("Skor1():", skor1());
+console.log("Skor1():", skor1());
 
 // skor2 kodları
 let skor = 0;
@@ -52,7 +62,9 @@ let skor = 0;
 function skor2() {
   return skor++;
 }
-
+console.log("Skor2():", skor2());
+console.log("Skor2():", skor2());
+console.log("Skor2():", skor2());
 
 /* Görev 2: takimSkoru() 
 Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
@@ -64,10 +76,17 @@ Aşağıdaki takimSkoru() fonksiyonununda aşağıdakileri yapınız:
 Not: Bu fonskiyon, aşağıdaki diğer görevler için de bir callback fonksiyonu olarak da kullanılacak
 */
 
-function takimSkoru(/*Kodunuzu buraya yazınız*/){
-    /*Kodunuzu buraya yazınız*/
+function takimSkoru() {
+  /*Kodunuzu buraya yazınız*/
+  return 10 + Math.floor(Math.random() * 16);
 }
-
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
+console.log("Takım Skoru : ", takimSkoru());
 
 
 
@@ -84,9 +103,9 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
   "EvSahibi": 92,
   "KonukTakim": 80
 }
-*/ 
+*/
 
-function macSonucu(/*Kodunuzu buraya yazınız*/){
+function macSonucu(/*Kodunuzu buraya yazınız*/) {
   /*Kodunuzu buraya yazınız*/
 }
 
@@ -154,7 +173,7 @@ function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
 
 
 /* Aşağıdaki satırları lütfen değiştirmeyiniz*/
-function sa(){
+function sa() {
   console.log('Kodlar çalışıyor');
   return 'as';
 }
