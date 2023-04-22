@@ -140,9 +140,14 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(takimSkoruCalllBack,) {
+function periyotSkoru(takimSkoruCalllBack) {
   /*Kodunuzu buraya yazınız*/
 
+
+  return {
+    EvSahibi: takimSkoruCalllBack(),
+    KonukTakim: takimSkoruCalllBack(),
+  };
 }
 
 
@@ -177,10 +182,38 @@ MAÇ UZAR ise skorTabelasi(periyotSkoru,takimSkoru,4)
 ] */
 // NOTE: Bununla ilgili bir test yoktur. Eğer logladığınız sonuçlar yukarıdakine benziyor ise tmamlandı sayabilirsiniz.
 
-function skorTabelasi(/*Kodunuzu buraya yazınız*/) {
+function skorTabelasi(periyotSkoruCallBack, takimSkoruCalllBack, ceyrekSayisi) {
   /*Kodunuzu buraya yazınız*/
+
+  const sonuc = [];
+  let evSahibiSkor = 0;
+  let konukTakimSkor = 0;
+
+  for (let i = 0; i < ceyrekSayisi; i++) {
+    const periyot = periyotSkoruCallBack(takimSkoruCalllBack);
+    sonuc.push(`${i + 1}. Periyot : Ev Sahibi ${periyot.EvSahibi} - Konuk Takım ${periyot.KonukTakim}`)
+    evSahibiSkor += periyot.EvSahibi;
+    konukTakimSkor += periyot.konukTakimSkor;
+  }
+  if (evSahibiSkor == konukTakimSkor) {
+    let i = 0;
+    while (evSahibiSkor == konukTakimSkor) {
+      i++;
+      const periyot = periyotSkoruCallBack(takimSkoruCalllBack);
+      sonuc.push(`${i}. Uzatma : Ev Sahibi ${periyot.EvSahibi} - Konuk Takım ${periyot.KonukTakim}`)
+      evSahibiSkor += periyot.EvSahibi;
+      konukTakimSkor += periyot.konukTakimSkor;
+    }
+
+  }
+  sonuc.push(`Maç Sonucu: Ev Sahibi ${evSahibiSkor} - Konuk Takım ${konukTakimSkor}`);
+  return sonuc;
 }
 
+console.log("skorTabelasi(periyotSkoru,takimSkoru,4) >", skorTabelasi(periyotSkoru, takimSkoru, 4));
+console.log("skorTabelasi(periyotSkoru,takimSkoru,4) >", skorTabelasi(periyotSkoru, takimSkoru, 4));
+console.log("skorTabelasi(periyotSkoru,takimSkoru,4) >", skorTabelasi(periyotSkoru, takimSkoru, 4));
+console.log("skorTabelasi(periyotSkoru,takimSkoru,4) >", skorTabelasi(periyotSkoru, takimSkoru, 4));
 
 
 
