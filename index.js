@@ -105,8 +105,20 @@ Aşağıdaki macSonucu() fonksiyonununda aşağıdakileri yapınız:
 }
 */
 
-function macSonucu(/*Kodunuzu buraya yazınız*/) {
+function macSonucu(takimSkoruCallBack, ceyrekSayisi) {
   /*Kodunuzu buraya yazınız*/
+  let evSahibiSkor = 0;
+  let konukTakimSkor = 0;
+
+  for (let i = 0; i < ceyrekSayisi; i++) {
+    evSahibiSkor += takimSkoruCallBack();
+    konukTakimSkor += takimSkoruCallBack();
+  }
+
+  return {
+    EvSahibi: evSahibiSkor,
+    KonukTakim: konukTakimSkor,
+  };
 }
 
 
@@ -128,7 +140,7 @@ Aşağıdaki periyotSkoru() fonksiyonununda aşağıdakileri yapınız:
   */
 
 
-function periyotSkoru(/*Kodunuzu buraya yazınız*/) {
+function periyotSkoru(takimSkoruCalllBack,) {
   /*Kodunuzu buraya yazınız*/
 
 }
